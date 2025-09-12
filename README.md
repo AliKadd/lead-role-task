@@ -51,6 +51,8 @@ For the following APIs, Postman Collection will be provided:
     PATCH     api/tasks/{id}/toggle-status
     GET|HEAD  api/users
 
+*In postman, please import the collection & environment json files and choose local environment when testing the APIs
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
