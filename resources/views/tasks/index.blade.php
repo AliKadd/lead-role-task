@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Tasks Management</h1>
         <div>
-            <button id="createTaskBtn" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#taskModal">Create Task</button>
+            <button id="createTaskBtn" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#taskModal" onclick="Tasks.openCreateModal()">Create Task</button>
             <button class="btn btn-outline-danger" onclick="Tasks.logout()">Logout</button>
         </div>
     </div>

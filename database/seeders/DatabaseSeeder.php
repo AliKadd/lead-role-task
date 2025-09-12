@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,39 +20,54 @@ class DatabaseSeeder extends Seeder
 //            'email' => 'test@example.com',
 //        ]);
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('test123'),
-            'role' => 'admin',
+        // User::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@test.com',
+        //     'password' => bcrypt('test123'),
+        //     'role' => 'admin',
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'User A',
+        //     'email' => 'user_a@test.com',
+        //     'password' => bcrypt('test123'),
+        //     'role' => 'user',
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'User B',
+        //     'email' => 'user_b@test.com',
+        //     'password' => bcrypt('test123'),
+        //     'role' => 'user',
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'User C',
+        //     'email' => 'user_c@test.com',
+        //     'password' => bcrypt('test123'),
+        //     'role' => 'user',
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'User D',
+        //     'email' => 'user_d@test.com',
+        //     'password' => bcrypt('test123'),
+        //     'role' => 'user',
+        // ]);
+
+        Tag::factory()->create([
+            'name' => 'Tag A',
+            'color' => 'Blue'
         ]);
 
-        User::factory()->create([
-            'name' => 'User A',
-            'email' => 'user_a@test.com',
-            'password' => bcrypt('test123'),
-            'role' => 'user',
+        Tag::factory()->create([
+            'name' => 'Tag B',
+            'color' => 'Green'
         ]);
 
-        User::factory()->create([
-            'name' => 'User B',
-            'email' => 'user_b@test.com',
-            'password' => bcrypt('test123'),
-            'role' => 'user',
-        ]);
-
-        User::factory()->create([
-            'name' => 'User C',
-            'email' => 'user_c@test.com',
-            'password' => bcrypt('test123'),
-            'role' => 'user',
-        ]);
-
-        User::factory()->create([
-            'name' => 'User D',
-            'email' => 'user_d@test.com',
-            'password' => bcrypt('test123'),
-            'role' => 'user',
+        Tag::factory()->create([
+            'name' => 'Tag C',
+            'color' => 'Red'
         ]);
     }
 }

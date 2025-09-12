@@ -53,7 +53,6 @@ const Tasks = (() => {
         });
     };
 
-    // --- Tasks Table ---
     const loadTasks = () => {
         if(tasksTable) tasksTable.destroy();
 

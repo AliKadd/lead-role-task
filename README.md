@@ -8,8 +8,28 @@
 </p>
 
 ## Setup Guide
+Run the following commands and following these steps one by one:
 
-- 
+1. composer install
+2. cp .env.example .env (Update db config in .env)
+3. php artisan key:generate
+4. php artisan db:migrate
+5. php artisan passport:install (choose yes for all questions)
+6. php artisan db:seed
+7. php artisan serve
+8. go to http://localhost:8000/login
+9. use the following credentials to login:
+
+Admin User
+    email: admin@test.com
+    password: test123
+
+OR
+
+Normal User
+    email: user@test.com
+    password: test123
+
 
 ## About Laravel
 
