@@ -11,7 +11,7 @@ const Tasks = (() => {
         if (user?.role !== 'admin') document.querySelector('#createTaskBtn').style.display = 'none';
 
         metadataEditor = CodeMirror.fromTextArea(document.getElementById('metadata'), {
-            mode: {name: "javascript", json: true},
+            mode: { name: "javascript", json: true },
             lineNumbers: true,
             theme: "idea",
             tabSize: 2,
@@ -54,7 +54,7 @@ const Tasks = (() => {
     };
 
     const loadTasks = () => {
-        if(tasksTable) tasksTable.destroy();
+        if (tasksTable) tasksTable.destroy();
 
         tasksTable = $('#tasksTable').DataTable({
             serverSide: true,
@@ -62,12 +62,12 @@ const Tasks = (() => {
             searching: false,
             ajax: {
                 url: '/api/tasks',
-                data: function(d) {
+                data: function (d) {
                     d.search = $('#filterKeyword').val();
                     d.status = $('#filterStatus').val();
                     d.tags = $('#filterTag').val();
 
-                    if(d.order && d.order.length){
+                    if (d.order && d.order.length) {
                         const colIndex = d.order[0].column;
                         const dir = d.order[0].dir;
                         d.order_by = d.columns[colIndex].data;
@@ -83,7 +83,7 @@ const Tasks = (() => {
                 { data: 'priority', orderable: true },
                 {
                     data: 'tags',
-                    render: tags => tags?.map(t => `<span class="badge me-1" style="background-color:${t.color??'black'};color:white;">${t.name}</span>`).join(''),
+                    render: tags => tags?.map(t => `<span class="badge me-1" style="background-color:${t.color ?? 'black'};color:white;">${t.name}</span>`).join(''),
                     orderable: false
                 },
                 {
@@ -99,9 +99,9 @@ const Tasks = (() => {
                 },
                 {
                     data: 'id',
-                    render: (id,row) => `
-                        <button class="btn btn-sm btn-primary" onclick="Tasks.editTask(${id})">Edit</button>
-                        <button class="btn btn-sm btn-danger" onclick="Tasks.deleteTask(${id})">Delete</button>
+                    render: (id, row) => `
+                        ${user.role === "admin" ? `<button class="btn btn-sm btn-primary" onclick="Tasks.editTask(${id})">Edit</button>` : ''}
+                        ${user.role === "admin" ? `<button class="btn btn-sm btn-danger" onclick="Tasks.deleteTask(${id})">Delete</button>` : ''}
                         <button class="btn btn-sm btn-warning" onclick="Tasks.toggleStatus(${id})">Toggle Status</button>
                         ${row.deleted_at ? `<button class="btn btn-sm btn-success" onclick="Tasks.restoreTask(${id})">Restore</button>` : ''}
                     `,
@@ -170,20 +170,20 @@ const Tasks = (() => {
         });
     };
 
-    const deleteTask = id => { if(confirm('Delete task?')) axios.delete(`/api/tasks/${id}`).then(loadTasks); };
+    const deleteTask = id => { if (confirm('Delete task?')) axios.delete(`/api/tasks/${id}`).then(loadTasks); };
     const toggleStatus = id => {
-        const row = tasksTable.row((idx,data) => data.id===id).data();
-        if(!row) return alert('Task data not found');
+        const row = tasksTable.row((idx, data) => data.id === id).data();
+        if (!row) return alert('Task data not found');
         axios.patch(`/api/tasks/${id}/toggle-status`, { version: row.version })
             .then(loadTasks)
-            .catch(err => alert(err.response?.status===409 ? 'Optimistic lock conflict' : 'Error toggling status.'));
+            .catch(err => alert(err.response?.status === 409 ? 'Optimistic lock conflict' : 'Error toggling status.'));
     };
     const restoreTask = id => axios.patch(`/api/tasks/${id}/restore`).then(loadTasks);
 
     const logout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
-        if(tasksTable) tasksTable.clear().destroy();
+        if (tasksTable) tasksTable.clear().destroy();
         $('#taskModal').modal('hide');
         window.location.href = '/login';
     };

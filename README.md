@@ -30,6 +30,26 @@ Normal User
     email: user@test.com
     password: test123
 
+After loggin in, you will be redirected to http://localhost:8000/tasks
+You create and manage all tasks when logging in as admin, and view/toggle status only user's assigned task if logged in as user
+
+To Run Tests, use the following command: vendor/bin/phpunit --coverage-html coverage/
+
+For the following APIs, Postman Collection will be provided:
+    POST      api/login
+    POST      api/logout 
+    GET|HEAD  api/tags
+    POST      api/tags
+    PUT       api/tags/{id}
+    DELETE    api/tags/{id}
+    GET|HEAD  api/tasks
+    POST      api/tasks
+    GET|HEAD  api/tasks/{id}
+    PUT       api/tasks/{id}
+    DELETE    api/tasks/{id}
+    PATCH     api/tasks/{id}/restore
+    PATCH     api/tasks/{id}/toggle-status
+    GET|HEAD  api/users
 
 ## About Laravel
 
