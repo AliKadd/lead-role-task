@@ -7,51 +7,124 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
 ## Setup Guide
-Run the following commands and following these steps one by one:
 
-1. composer install
-2. cp .env.example .env (Update db config in .env)
-3. php artisan key:generate
-4. php artisan db:migrate
-5. php artisan passport:install (choose yes for all questions)
-6. php artisan db:seed
-7. php artisan serve
-8. go to http://localhost:8000/login
-9. use the following credentials to login:
+Follow these steps to set up and run the project locally:
 
-Admin User
-    email: admin@test.com
-    password: test123
+### 1. Install dependencies
 
-OR
+```bash
+composer install
+```
 
-Normal User
-    email: user@test.com
-    password: test123
+### 2. Configure environment
 
-After loggin in, you will be redirected to http://localhost:8000/tasks
-You create and manage all tasks when logging in as admin, and view/toggle status only user's assigned task if logged in as user
+```bash
+cp .env.example .env
+```
 
-To Run Tests, use the following command: vendor/bin/phpunit --coverage-html coverage/
+* Update your **database configuration** in the `.env` file (host, port, username, password).
 
-For the following APIs, Postman Collection will be provided:
-    POST      api/login
-    POST      api/logout 
-    GET|HEAD  api/tags
-    POST      api/tags
-    PUT       api/tags/{id}
-    DELETE    api/tags/{id}
-    GET|HEAD  api/tasks
-    POST      api/tasks
-    GET|HEAD  api/tasks/{id}
-    PUT       api/tasks/{id}
-    DELETE    api/tasks/{id}
-    PATCH     api/tasks/{id}/restore
-    PATCH     api/tasks/{id}/toggle-status
-    GET|HEAD  api/users
+### 3. Generate application key
 
-*In postman, please import the collection & environment json files and choose local environment when testing the APIs
+```bash
+php artisan key:generate
+```
+
+### 4. Run database migrations
+
+```bash
+php artisan migrate
+```
+
+### 5. Install Passport
+
+```bash
+php artisan passport:install
+```
+
+* When prompted, choose **Yes** for all questions.
+
+### 6. Seed the database
+
+```bash
+php artisan db:seed
+```
+
+### 7. Start the development server
+
+```bash
+php artisan serve
+```
+
+Application will be available at: [http://localhost:8000/login](http://localhost:8000/login)
+
+---
+
+## Login Credentials
+
+### Admin User
+
+* **Email:** `admin@test.com`
+* **Password:** `test123`
+
+### Normal User
+
+* **Email:** `user@test.com`
+* **Password:** `test123`
+
+---
+
+## Notes
+
+* After login, you’ll be redirected to [http://localhost:8000/tasks](http://localhost:8000/tasks).
+* **Admin** can create and manage all tasks.
+* **Normal User** can only view their assigned tasks and toggle task status.
+
+---
+
+## Running Tests
+
+To run tests with coverage:
+
+```bash
+vendor/bin/phpunit --coverage-html coverage/
+```
+
+---
+
+## 📡 API Endpoints
+
+A **Postman collection** will be provided.
+Import the collection and environment JSON files into Postman, then select the `local` environment when testing.
+
+### Authentication
+
+* `POST   api/login`
+* `POST   api/logout`
+
+### Tags
+
+* `GET    api/tags`
+* `POST   api/tags`
+* `PUT    api/tags/{id}`
+* `DELETE api/tags/{id}`
+
+### Tasks
+
+* `GET    api/tasks`
+* `POST   api/tasks`
+* `GET    api/tasks/{id}`
+* `PUT    api/tasks/{id}`
+* `DELETE api/tasks/{id}`
+* `PATCH  api/tasks/{id}/restore`
+* `PATCH  api/tasks/{id}/toggle-status`
+
+### Users
+
+* `GET    api/users`
+
 
 ## About Laravel
 
