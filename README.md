@@ -92,6 +92,8 @@ To run tests with coverage:
 vendor/bin/phpunit --coverage-html coverage/
 ```
 
+* Update your **database configuration** in the `.env.test` file (host, port, username, password).
+
 ---
 
 ## 📡 API Endpoints
